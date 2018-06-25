@@ -30,25 +30,23 @@
     class MyComponent extends React.Component {
       constructor() {
         console.log(Date.now(), 'MyComponent has instantiated');
-        debugger;
         super();
       }
 
       componentWillMount() {
         console.log(Date.now(), 'componentWillMount', );
-        debugger;
+        debugger;              // Pause here to check component is NOT in the DOM
       }
 
       componentDidMount() {
         console.log(Date.now(), 'componentDidMount', );
-        debugger;
+        debugger;              // Pause here to check component is in the DOM
       }
 
       render() {
-        console.log(Date.now(), 'rendering');
-        debugger;
+        console.log(Date.now(), 'render');
         return (
-          <div>My Component</div>
+          <div>MyComponent</div>
         );
       }
     }
