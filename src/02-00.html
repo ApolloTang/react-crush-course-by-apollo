@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>React lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {background: hsl(0,30%,95%);}
+  </style>
+</head>
+
+<body>
+  <div id="react-container"></div>
+  <script src="./resources/babel/babel-standalone@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/babel/babel-polyfill@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/react/react-16.4.1.production.min.js"></script>
+  <script src="./resources/react/react-dom-16.4.1.production.min.js"></script>
+  <script src="./resources/less/dist/less.min.js"></script>
+  <script src="./resources/lodash/lodash-4.17.10.min.js"></script>
+  <script>
+    console.log(`
+      _: version ${_.VERSION}
+      less: version ${less.version}
+      React: version ${React.version}
+    `);
+  </script>
+  <script type="text/babel" >
+
+    class MyComponent extends React.Component {
+
+      // A component must have one and only one root node (not more)
+      //
+      // ** This is no longer true for React 16 (more on this later) **
+      //
+
+      render() {
+        return (
+          <div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+          </div>
+        );
+      }
+    }
+
+    const reactContainer = document.getElementById('react-container');
+    ReactDOM.render(<MyComponent />, reactContainer, ()=>{console.log('Done !');});
+
+  </script>
+</body>
+
+</html>
