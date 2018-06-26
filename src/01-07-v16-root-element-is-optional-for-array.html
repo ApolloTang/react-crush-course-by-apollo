@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>React lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {background: hsl(0,30%,95%);}
+  </style>
+</head>
+
+<body>
+  <div id="react-container"></div>
+  <script src="./resources/babel/babel-standalone@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/babel/babel-polyfill@7.0.0-alpha.20.min.js"></script>
+
+  <!-- <script src="./resources/react/react&#45;16.4.1.production.min.js"></script> -->
+  <!-- <script src="./resources/react/react&#45;dom&#45;16.4.1.production.min.js"></script> -->
+
+  <script src="./resources/react/react-15.1.0.js"></script>
+  <script src="./resources/react/react-dom-15.1.0.js"></script>
+
+  <script src="./resources/less/dist/less.min.js"></script>
+  <script src="./resources/lodash/lodash-4.17.10.min.js"></script>
+  <script>
+    console.log(`
+      _: version ${_.VERSION}
+      less: version ${less.version}
+      React: version ${React.version}
+    `);
+  </script>
+  <script type="text/babel" >
+
+    class MyComponent extends React.Component {
+
+      // JXS's array item must have key attribute with unique value
+
+      render() {
+        return (
+          <div>{ /* optional in v16 */
+            [
+              <div key={_.uniqueId()} >one</div>,
+              <div key={_.uniqueId()} >two</div>,
+              <div key={_.uniqueId()} >three</div>,
+            ]
+          /* optional in v16 */ } </div>
+        );
+      }
+
+    }
+
+
+    const reactContainer = document.getElementById('react-container');
+    ReactDOM.render(<MyComponent />, reactContainer, ()=>{console.log('Done !');});
+
+  </script>
+</body>
+
+</html>
