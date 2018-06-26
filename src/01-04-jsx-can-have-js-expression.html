@@ -32,14 +32,23 @@
       // JXS can contain js expression
 
       render() {
+        const name = 'Miley Cyrus';
+
         return (
           <div>
             { /* This is a comment */ }
-            { true ? <b>true</b> : null }
+
+            { /* Variable interpolation */ }
+            <p>My name is {name}</p>
             <hr />
-            { false ? null : <div>false</div> }
-            <br />
-            { `1 + 1 = ${1+1} ` }
+
+            { /* Ternary Operator */ }
+            <p>{ true ? <b>true</b> : null }</p>
+            <p>{ false ? null : <span>false</span> }</p>
+            <hr />
+
+            { /* Template literals */ }
+            <p>{ `1 + 1 = ${1+1}` }</p>
           </div>
         );
       }

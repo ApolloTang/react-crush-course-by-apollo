@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>React lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {background: hsl(0,30%,95%);}
+
+    .red {color:red;}
+  </style>
+</head>
+
+<body>
+  <div id="react-container"></div>
+  <script src="./resources/babel/babel-standalone@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/babel/babel-polyfill@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/react/react-16.4.1.production.min.js"></script>
+  <script src="./resources/react/react-dom-16.4.1.production.min.js"></script>
+  <script src="./resources/less/dist/less.min.js"></script>
+  <script src="./resources/lodash/lodash-4.17.10.min.js"></script>
+  <script>
+    console.log(`
+      _: version ${_.VERSION}
+      less: version ${less.version}
+      React: version ${React.version}
+    `);
+  </script>
+  <script type="text/babel" >
+
+    class UserDefined extends React.Component {
+      render() {
+        return (
+          <div>I am a user defined element </div>
+        )
+      }
+    }
+
+    class MyComponent extends React.Component {
+
+      // More on Jsx
+
+      render() {
+        return (
+          <div>
+
+            <p /* this is how you add comment to a jsx tag */ > I am a paragraph </p>
+            <br />
+
+
+            {/* There are some different in attribute name */}
+            <p className="red" /* note that 'class' is spelled as 'className' */ >
+              I am colored with red
+            </p>
+            <br />
+
+
+            {/* Here is an example of form in jsx */}
+            <form>
+              <input
+                type="checkbox"
+                name="fruit"
+                id="checbox1"
+                value="apple"
+                checked={false}
+              />
+              <label htmlFor="checbox1"/* note that 'for' is spelled as 'htmlFor' */ >
+                apple
+              </label>
+              <br />
+              <input
+                type="checkbox"
+                name="fruit"
+                id="checkbox2"
+                value="orange"
+                checked={true}
+              />
+              <label htmlFor="checkbox2">
+                orange
+              </label>
+            </form>
+            <br />
+
+
+            {/* Inline style is an object literal, so value of properties are string */}
+            <p style={{backgroundColor:'blue', color:'#f00'}} >
+              my blackground is blue
+            </p>
+            <br />
+
+
+            <UserDefined /* user define element must be in Pascal case */ />
+
+          </div>
+        );
+      }
+    }
+
+    const reactContainer = document.getElementById('react-container');
+    ReactDOM.render(<MyComponent />, reactContainer, ()=>{console.log('Done !');});
+
+  </script>
+</body>
+
+</html>
