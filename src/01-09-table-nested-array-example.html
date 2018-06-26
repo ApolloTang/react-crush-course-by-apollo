@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>React lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {background: hsl(0,30%,95%);}
+    td {
+      border: 1px solid hsl(0, 0%, 20%);
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="react-container"></div>
+  <script src="./resources/babel/babel-standalone@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/babel/babel-polyfill@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/react/react-16.4.1.production.min.js"></script>
+  <script src="./resources/react/react-dom-16.4.1.production.min.js"></script>
+  <script src="./resources/less/dist/less.min.js"></script>
+  <script src="./resources/lodash/lodash-4.17.10.min.js"></script>
+  <script>
+    console.log(`
+      _: version ${_.VERSION}
+      less: version ${less.version}
+      React: version ${React.version}
+    `);
+  </script>
+  <script type="text/babel" >
+
+    class MyComponent extends React.Component {
+
+      // Nested Array Iteration
+
+      render() {
+        return (
+          <table>
+            <tbody>
+              {
+                [ ['1a','1b', '1c'],
+                  ['2a','2b', '2c'],
+                  ['3a','3b', '3c'] ].map(
+                    row =>
+                      <tr key={_.uniqueId()}>
+                      {
+                        row.map(
+                          cell =>
+                            <td key={_.uniqueId()}>
+                              {cell}
+                            </td>
+                        )
+                      }
+                      </tr>
+                  )
+              }
+            </tbody>
+          </table>
+        );
+      }
+
+    }
+
+    const reactContainer = document.getElementById('react-container');
+    ReactDOM.render(<MyComponent />, reactContainer, ()=>{console.log('Done !');});
+
+  </script>
+</body>
+
+</html>
