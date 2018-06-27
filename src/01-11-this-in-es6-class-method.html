@@ -32,7 +32,9 @@
 
     class MyComponent extends React.Component {
 
-      // Synthetic Event
+      // 'this' in ES6 React Class syntax is lexical scope, you
+      // have to manually bind 'this' to your method in the constructor
+      // or using arrow function
 
       constructor() {
         super();
