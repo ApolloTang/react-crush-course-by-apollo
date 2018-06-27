@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>React lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {background: hsl(0,30%,95%);}
+
+    button {
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="react-container"></div>
+  <script src="./resources/babel/babel-standalone@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/babel/babel-polyfill@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/react/react-16.4.1.production.min.js"></script>
+  <script src="./resources/react/react-dom-16.4.1.production.min.js"></script>
+  <script src="./resources/less/dist/less.min.js"></script>
+  <script src="./resources/lodash/lodash-4.17.10.min.js"></script>
+  <script>
+    console.log(`
+      _: version ${_.VERSION}
+      less: version ${less.version}
+      React: version ${React.version}
+    `);
+  </script>
+  <script type="text/babel" >
+
+    class MyComponent extends React.Component {
+      /*
+        • 'this.state' is this component internal state.
+        • *NeverEver* set 'this.state' directly.
+        • You can only change 'this.state' via 'this.setState()'.
+        • Calling 'this.setState()' will trigger render().
+      */
+      state = { counter1: 1 }
+
+      counter2 = 1
+
+      handleButton1Clicked = () => {
+        this.setState({counter1:this.state.counter1+1})
+        console.log(`(this.state.counter1, this.counter2):(${this.state.counter1}, ${this.counter2})`)
+      }
+
+      handleButton2Clicked = () => {
+        this.counter2++
+        console.log(`(this.state.counter1, this.counter2):(${this.state.counter1}, ${this.counter2})`)
+      }
+
+      render() {
+        return (
+          <div>
+            <button onClick={this.handleButton1Clicked}>Increase Counter 1</button><br />
+            <button onClick={this.handleButton2Clicked}>Increase Counter 2</button><br />
+            <div>{`counter 1: ${this.state.counter1}`}</div>
+            <div>{`counter 2: ${this.counter2}`}</div>
+          </div>
+        );
+      }
+    }
+
+    const reactContainer = document.getElementById('react-container');
+    ReactDOM.render(<MyComponent  />, reactContainer);
+
+  </script>
+</body>
+
+</html>
