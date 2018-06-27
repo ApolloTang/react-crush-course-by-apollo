@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>React lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {background: hsl(0,30%,95%);}
+
+    button {
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="react-container"></div>
+  <script src="./resources/babel/babel-standalone@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/babel/babel-polyfill@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/react/react-16.4.1.production.min.js"></script>
+  <script src="./resources/react/react-dom-16.4.1.production.min.js"></script>
+  <script src="./resources/less/dist/less.min.js"></script>
+  <script src="./resources/lodash/lodash-4.17.10.min.js"></script>
+  <script>
+    console.log(`
+      _: version ${_.VERSION}
+      less: version ${less.version}
+      React: version ${React.version}
+    `);
+  </script>
+  <script type="text/babel" >
+
+    // Stateless functional component are pure function, it has no internal state.
+    const Item = ({item}) => <div>{item}</div>;
+
+    const List = ({list}) => {
+      const _list = list || [];
+      return (
+        <div>
+          { _list.map( item => <Item key={item} item={item} />) }
+        </div>
+      );
+    }
+
+    class MyComponent extends React.Component {
+      state = { list: [] };
+
+      handle_pushItem = () => {
+        const list_next = [...this.state.list, Date.now()+'']; // shallow clone array and add new element
+        this.setState({ list:list_next });
+      }
+
+      handle_popItem = () => {
+        const list_next = [...this.state.list].slice(0,-1) // shallow clone without the last element
+        this.setState({ list:list_next });
+      }
+
+      render() {
+        return (
+          <div>
+            <button onClick={this.handle_pushItem} >Push item</button>
+            <button onClick={this.handle_popItem} >Pop item</button>
+            <List list={this.state.list} />
+          </div>
+        );
+      }
+    };
+
+    const reactContainer = document.getElementById('react-container');
+    ReactDOM.render(<MyComponent  />, reactContainer);
+
+  </script>
+</body>
+
+</html>
