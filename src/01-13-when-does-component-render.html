@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>React lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {background: hsl(0,30%,95%);}
+  </style>
+</head>
+
+<body>
+  <div id="react-container"></div>
+  <script src="./resources/babel/babel-standalone@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/babel/babel-polyfill@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/react/react-16.4.1.production.min.js"></script>
+  <script src="./resources/react/react-dom-16.4.1.production.min.js"></script>
+  <script src="./resources/less/dist/less.min.js"></script>
+  <script src="./resources/lodash/lodash-4.17.10.min.js"></script>
+  <script>
+    console.log(`
+      _: version ${_.VERSION}
+      less: version ${less.version}
+      React: version ${React.version}
+    `);
+  </script>
+  <script type="text/babel" >
+
+    class Child extends React.Component {
+    // class Child extends React.PureComponent { // Only render when props change
+      render() {
+        console.log(`${Date.now()}       Child render(), this.props.text: ${this.props.text}`)
+        return <div>{this.props.text}</div>
+      }
+    }
+
+    class MyComponent extends React.Component {
+      render() {
+        console.log(`${Date.now()} MyComponent render(), this.props.text: ${this.props.text}`)
+        return (
+          [
+            <Child text={'Does not Change'}/>,
+            <Child text={this.props.text}/>
+          ]
+        );
+      }
+    }
+
+    const reactContainer = document.getElementById('react-container');
+
+    const texts = ['foo', 'foo', 'foo', 'baz', 'baz', 'baz'];
+
+    const cancel = setInterval(()=>{
+      if (texts.length > 0) {
+        ReactDOM.render(<MyComponent text={texts.pop()} />, reactContainer);
+        console.log('- - - - - - -')
+      } else {
+        clearTimeout(cancel);
+      }
+    }, 1000)
+
+  </script>
+</body>
+
+</html>
