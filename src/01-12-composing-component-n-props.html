@@ -49,7 +49,7 @@
 
 class Item extends React.Component {
   constructor(props) {
-    super(props);
+    super(props); // without calling super with props this.props is undefined
     console.log('Item.Constructor(): this.props: ', this.props);
   }
   render() {
