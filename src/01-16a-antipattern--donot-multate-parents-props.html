@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>React lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {background: hsl(0,30%,95%);}
+
+    button {
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="react-container"></div>
+  <script src="./resources/babel/babel-standalone@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/babel/babel-polyfill@7.0.0-alpha.20.min.js"></script>
+  <script src="./resources/react/react-16.4.1.production.min.js"></script>
+
+  <!-- <script src="./resources/react/react&#45;16.4.1.production.min.js"></script> -->
+  <!-- <script src="./resources/react/react&#45;dom&#45;16.4.1.production.min.js"></script> -->
+
+  <script src="./resources/react/react-15.1.0.js"></script>
+  <script src="./resources/react/react-dom-15.1.0.js"></script>
+
+  <script src="./resources/lodash/lodash-4.17.10.min.js"></script>
+  <script>
+    console.log(`
+      _: version ${_.VERSION}
+      less: version ${less.version}
+      React: version ${React.version}
+    `);
+  </script>
+  <script type="text/babel" >
+
+    const Item = ({item}) => <div>{item}</div>;
+
+    class List extends React.Component {
+      handle_clearList = () => {
+        this.props.list = [];  // <---- NO! do not mulate parents props!
+
+        console.log('this.props.list:', this.props.list)
+        this.setState({timeStamp: Date.now()});
+      }
+      render() {
+        return(
+          <div>
+            <button onClick={this.handle_clearList}>Clear List</button>
+            { this.props.list.map( item => <Item key={item} item={item} />) }
+          </div>
+        )
+      }
+    }
+
+    class MyApp extends React.Component {
+      constructor(props) {
+        super(props);
+        window.MyApp = this
+      }
+      state = { list: ['one', 'two', 'three'] };
+
+      render() {
+        return (
+          <List list={this.state.list} />
+        );
+      }
+    };
+
+    const reactContainer = document.getElementById('react-container');
+    ReactDOM.render(<MyApp />, reactContainer);
+
+  </script>
+</body>
+
+</html>
