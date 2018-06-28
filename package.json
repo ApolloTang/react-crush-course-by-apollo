@@ -1,5 +1,5 @@
 {
-  "name": "react-quick-intro-by-apollo-tang",
+  "name": "react-crush-course-by-apollo-tang",
   "version": "1.0.0",
   "description": "##### Instruction to run:",
   "main": "index.js",
@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "browser-sync start -s \"src\" -f \"src\" -c \"bs-config.js\" --directory"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [crush-course, react, by-apollo-tang],
+  "author": "Apollo Tang",
   "license": "ISC",
   "dependencies": {
     "browser-sync": "2.24.5"
