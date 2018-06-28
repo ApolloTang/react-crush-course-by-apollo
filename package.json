@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "browser-sync start -s \"src\" -f \"src\" -c \"bs-config.js\" --directory"
   },
-  "keywords": [crush-course, react, by-apollo-tang],
+  "keywords": ["crush-course", "react", "by-apollo-tang"],
   "author": "Apollo Tang",
   "license": "ISC",
   "dependencies": {
