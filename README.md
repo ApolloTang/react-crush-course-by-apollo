@@ -5,7 +5,7 @@
 
 ```
 $ npm i
-$ npm start
+$ npm run start
 ```
 
 or just drag lesson files in src/ into browser
